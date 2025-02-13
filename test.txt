@@ -1,0 +1,105 @@
+-- Step 1: Create Database
+CREATE DATABASE ORG;
+USE ORG;
+
+-- Step 2: Create Worker Table
+CREATE TABLE Worker (
+    WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIRST_NAME CHAR(25),
+    LAST_NAME CHAR(25),
+    SALARY INT,
+    JOINING_DATE DATETIME,
+    DEPARTMENT CHAR(25)
+);
+
+-- Step 3: Insert Data into Worker Table
+INSERT INTO Worker 
+    (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+    (1, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR'),
+    (2, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin'),
+    (3, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR'),
+    (4, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin'),
+    (5, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin'),
+    (6, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account'),
+    (7, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account'),
+    (8, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+-- Step 4: Create Bonus Table
+CREATE TABLE Bonus (
+    WORKER_REF_ID INT,
+    BONUS_AMOUNT INT,
+    BONUS_DATE DATE,
+    FOREIGN KEY (WORKER_REF_ID) REFERENCES Worker(WORKER_ID) ON DELETE CASCADE
+);
+
+-- Step 5: Insert Data into Bonus Table
+INSERT INTO Bonus (WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+    (1, 5000, '2016-02-20'),
+    (2, 3000, '2016-06-11'),
+    (3, 4000, '2016-02-20'),
+    (1, 4500, '2016-02-20'),
+    (2, 3500, '2016-06-11');
+
+-- Step 6: Create Title Table
+CREATE TABLE Title (
+    WORKER_REF_ID INT,
+    WORKER_TITLE CHAR(25),
+    AFFECTED_FROM DATETIME,
+    FOREIGN KEY (WORKER_REF_ID) REFERENCES Worker(WORKER_ID) ON DELETE CASCADE
+);
+
+-- Step 7: Insert Data into Title Table
+INSERT INTO Title (WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+    (1, 'Manager', '2016-02-20 00:00:00'),
+    (2, 'Executive', '2016-06-11 00:00:00'),
+    (8, 'Executive', '2016-06-11 00:00:00'),
+    (5, 'Manager', '2016-06-11 00:00:00'),
+    (4, 'Asst. Manager', '2016-06-11 00:00:00'),
+    (7, 'Executive', '2016-06-11 00:00:00'),
+    (6, 'Lead', '2016-06-11 00:00:00'),
+    (3, 'Lead', '2016-06-11 00:00:00');
+----------
+ANS 1:
+SELECT * FROM Worker ORDER BY FIRST_NAME ASC;
+----------
+ANS 2:
+SELECT * FROM Worker ORDER BY FIRST_NAME ASC, DEPARTMENT DESC;
+----------
+ANS 3:
+SELECT * FROM Worker WHERE FIRST_NAME NOT IN ('Vipul', 'Satish');
+---------
+ANS 4:
+SELECT * FROM Worker WHERE FIRST_NAME LIKE '___h';
+---------
+ANS 5:
+SELECT COUNT(*) AS EmployeeCount FROM Worker WHERE DEPARTMENT = 'Admin';
+---------
+ANS 6:
+SELECT FIRST_NAME, LAST_NAME FROM Worker WHERE SALARY BETWEEN 50000 AND 100000;
+--------
+ANS 7:
+SELECT DEPARTMENT, COUNT(*) AS Worker_Count
+FROM Worker
+GROUP BY DEPARTMENT
+ORDER BY Worker_Count DESC
+---------
+ANS 8:
+SELECT DISTINCT SALARY 
+FROM Worker W1 
+WHERE 4 = (SELECT COUNT(DISTINCT SALARY) 
+           FROM Worker W2 
+           WHERE W2.SALARY > W1.SALARY);
+----------
+ANS 9:
+SELECT W1.WORKER_ID, W1.FIRST_NAME, W1.LAST_NAME, W1.SALARY 
+FROM Worker W1
+JOIN (
+    SELECT SALARY 
+    FROM Worker
+    GROUP BY SALARY
+    HAVING COUNT(*) > 1
+) W2 ON W1.SALARY = W2.SALARY;
+----------
+
+
+
