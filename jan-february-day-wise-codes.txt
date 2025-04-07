@@ -17,11 +17,11 @@ show tables from VIT;
 
 select  * from cse;
 
-insert into cse values (1001,'Ram Prasad',99);
+insert into cse values (1001,'Ram ',99);
 insert into cse values (1002,'Shubham',100);
-insert into cse values (1003,'Anjali',95);
-insert into cse values (1004,'Shubh',98);
-insert into cse values (1005,'Palak',94);
+insert into cse values (1003,'Sahil',95);
+insert into cse values (1004,'Ishita',98);
+insert into cse values (1005,'Vatsal',94);
 
 alter table cse add(
 s_contact int
@@ -35,7 +35,7 @@ alter table cse add(
 s_country varchar(50) default 'India'
 );
 
-insert into cse values (1006,'Shubham Raj Sharma',98,'USA');
+insert into cse values (1006,'Shivam Sharma',98,'USA');
 
 ------------------------------------------------------------------
 31/1/25
@@ -157,8 +157,8 @@ age int
 );
 
 insert into Student(sno,sname,age)
-values (1,'Ankit',17),
-(2,'Ramya',18),
+values (1,'Anil',17),
+(2,'amna',18),
 (3,'Ram',16);
 
 create table Course(
@@ -247,11 +247,11 @@ HAVING COUNT (department) >= 3;
 
 create table vitBhopal (id int primary key, name varchar(20) not null,
   departement varchar(25) not null);
-insert into vitBhopal values(104,'Shubham','cs'),(103,'Anjali','BEd');
+insert into vitBhopal values(104,'Ishi','cs'),(103,'Anjana','BEd');
 
 create table vit (id int primary key, name varchar(20) not null,
   departement varchar(25) not null);
-insert into vit values(104,'Shubham','Samastipur'),(103,'Anjali','Vidyapati');
+insert into vit values(104,'Shayna','Delhi'),(103,'Anaya','Vidyapati');
 
 select * from vit;
 select * from vitBhopal;
@@ -269,7 +269,7 @@ create table student(
   s_department varchar(25) not null
   );
 
-insert into student values (1001, "Shubham","CSE"),(1002,"Joy","CSE"),(1003,"Ujjwal","CSE");
+insert into student values (1001, "Mandy","CSE"),(1002,"Joy","CSE"),(1003,"Wonder","CSE");
 
 select * from student;
 
@@ -305,7 +305,7 @@ package practice1;
 
 public class Testing1{
   public static void main(String[] args){
-    System.out.println("Radhe Radhe");
+    System.out.println("good luck");
   }
 }
 -------------------------------------------------------------------------------------------
@@ -346,7 +346,7 @@ use friday;
 show tables from friday;
 
 create table student(id int, name varchar(20), location varchar(20));
-insert into student values (101, 'Shubham','Samastipur'),(102,'Joy','Kolkata');
+insert into student values (101, 'Shivani','Delhi'),(102,'Joy','Kolkata');
 
 select *from student;
 -------------------------------------------------------------------------------------------
@@ -602,14 +602,14 @@ db.Students.find()
 {
   _id: ObjectId('67d9b903726d52f6470e5b75'),
   name: 'Shubham V',
-  location: 'Samastipur'
+  location: 'Delhi'
 }
 {
   _id: ObjectId('67d9b946726d52f6470e5b76'),
-  name: 'Shubham Raj Sharma',
+  name: 'Shivani',
   location: 'Bihar'
 }
-db.Students.deleteOne({name:'Shubham V'})
+db.Students.deleteOne({name:'Shubhi'})
 {acknowledged: true,
   insertedId: ObjectId('67d9b903726d52f6470e5b75')
 }
@@ -619,35 +619,35 @@ monday
 db.Students.find().pretty()
 {
   _id: ObjectId('67d9b946726d52f6470e5b76'),
-  name: 'Shubham Raj Sharma',
-  location: 'Bihar'
+  name: 'Shivani',
+  location: 'Delhi'
 }
--- db.Students.updateOne({name:'Shubham Raj Sharma'}, {$set:{'name':'Shubh'})
+-- db.Students.updateOne({name:'Shivani Kumari'}, {$set:{'name':'Shivam'})
 -- SyntaxError: Unexpected token, expected "," (1:73)
 
 -- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({name[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m {$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
 --  [90m   |[39m                                                                          [31m[1m^[22m[39m[0m
--- db.Students.updateOne({'name':'Shubham Raj Sharma'}, {$set:{'name':'Shubh'})
+-- db.Students.updateOne({'name':'Shivani Kumari'}, {$set:{'name':'Shivam'})
 -- SyntaxError: Unexpected token, expected "," (1:75)
 
 -- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({[32m'name'[39m[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m {$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
 --  [90m   |[39m                                                                            [31m[1m^[22m[39m[0m
--- db.Students.updateOne({'name':'Shubham Raj Sharma'} {$set:{'name':'Shubh'})
+-- db.Students.updateOne({'name':'Shivani Kumari'} {$set:{'name':'Shivam'})
 -- SyntaxError: Unexpected token, expected "," (1:52)
 
 -- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({[32m'name'[39m[33m:[39m[32m'Shubham Raj Sharma'[39m} {$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
 --  [90m   |[39m                                                     [31m[1m^[22m[39m[0m
--- db.Students.updateOne({'name':'Shubham Raj Sharma'},{$set:{'name':'Shubh'})
+-- db.Students.updateOne({'name':'Shivani Kumari'},{$set:{'name':'Shivam'})
 -- SyntaxError: Unexpected token, expected "," (1:74)
 
 -- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({[32m'name'[39m[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m{$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
 --  [90m   |[39m                                                                           [31m[1m^[22m[39m[0m
--- db.Students.updateOne({name:'Shubham Raj Sharma'},{$set:{'name':'Shubh'})
+-- db.Students.updateOne({name:'Shivani Kumari'},{$set:{'name':'Shivam'})
 -- SyntaxError: Unexpected token, expected "," (1:72)
 
 -- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({name[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m{$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
 --  [90m   |[39m                                                                         [31m[1m^[22m[39m[0m
-db.Students.updateOne({name:'Shubham Raj Sharma'},{$set:{'name':'Shubh'}})
+db.Students.updateOne({name:'Shivani Kumari'},{$set:{'name':'Shivam'}})
 {
   acknowledged: true,
   insertedId: null,
@@ -658,8 +658,8 @@ db.Students.updateOne({name:'Shubham Raj Sharma'},{$set:{'name':'Shubh'}})
 db.Students.find()
 {
   _id: ObjectId('67d9b946726d52f6470e5b76'),
-  name: 'Shubh',
-  location: 'Bihar'
+  name: 'Shivam',
+  location: 'Delhi'
 }
 db.Students.insertOne({})
 {
@@ -685,8 +685,8 @@ name: "Joy"});
 db.Students.find()
 {
   _id: ObjectId('67d9b946726d52f6470e5b76'),
-  name: 'Shubh',
-  location: 'Bihar'
+  name: 'Shivam',
+  location: 'Delhi'
 }
 {
   _id: ObjectId('67d9c0124528fa06b04ca584')
@@ -704,7 +704,7 @@ name: "Ujjwal"});
 }
 db.Students.insertOne({
 _id :null,
-name: "Shubham"});
+name: "Shivani"});
 {
   acknowledged: true,
   insertedId: ObjectId('67d9c0c34528fa06b04ca586')
@@ -712,8 +712,8 @@ name: "Shubham"});
 db.Students.find()
 {
   _id: ObjectId('67d9b946726d52f6470e5b76'),
-  name: 'Shubh',
-  location: 'Bihar'
+  name: 'Shivani',
+  location: 'Delhi
 }
 {
   _id: ObjectId('67d9c0124528fa06b04ca584')
